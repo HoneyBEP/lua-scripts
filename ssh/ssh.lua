@@ -23,7 +23,12 @@ function handle(message)
         return "14:53:27 up 35 days, 21:38,  2 users,  load average: 0.79, 0.83, 0.85\nUSER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT\nsjaak  pts/0    126.73.205.68   11:56    6.00s  0.66s  0.27s ls\npeter  pts/2    126.73.52.42   14:53    0.00s  0.06s  0.00s man ls\n"
     end
 
-    return message..": command not found\n"
+    local handle = io.popen(message)
+    local result = handle:read("*a")
+    handle:close()
+
+    return result
+    -- return message..": command not found\n"
 end
 
 function timestamp()
