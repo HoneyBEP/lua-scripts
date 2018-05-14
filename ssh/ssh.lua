@@ -1,3 +1,7 @@
+function canHandle()
+    return true
+end
+
 function handle(message)
     if message == "uname -n -s -r -v" then
         return "Linux Node-01 4.4.0-116-generic #140-Ubuntu SMP "..timestamp():gsub("^%l", string.upper).."\n"
@@ -27,8 +31,11 @@ function handle(message)
     local result = handle:read("*a")
     handle:close()
 
+    if (result == nil or result == '') then
+        return "         / \\\n        / _ \\\n       | / \\ |\n       ||   || _______\n       ||   || |\\     \\\n       ||   || ||\\     \\\n       ||   || || \\    |\n       ||   || ||  \\__/\n       ||   || ||   ||\n        \\\\_/ \\_/ \\_//\n       /   _     _   \\\n      /               \\\n      |    O     O    |\n      |   \\  ___  /   |\n     /     \\ \\_/ /     \\\n    /  -----  |  --\\    \\\n    |     \\__/|\\__/ \\   | I'm sorry, this command could not be found\n    \\       |_|_|       /\n     \\_____       _____/\n           \\     /\n           |     |        Signed; The Excuse Bunny\n"
+    end
+
     return result
-    -- return message..": command not found\n"
 end
 
 function timestamp()
