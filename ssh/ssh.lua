@@ -6,10 +6,14 @@ function canHandle()
 end
 
 function handle(message)
-    local result = uname.getResponse(message)
-    if result ~= nil and result ~= '' then
-        return result.."\n"
+    if string.match(message, "^uname ") then
+        local testResponse = getAbTest("uname")
+        local result = uname.getResponse(message, testResponse)
+        if result ~= nil and result ~= '' then
+            return result.."\n"
+        end
     end
+
 
     if message == "uname -n -s -r -v" then
         return "Linux Node-01 4.4.0-116-generic #140-Ubuntu SMP "..timestamp():gsub("^%l", string.upper).."\n"

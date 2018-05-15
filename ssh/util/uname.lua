@@ -1,40 +1,28 @@
 local uname = {}
 
-function uname.getResponse(message)
-    local unameCommand = {
-        { -- busybox_w32_32x
-            s = "Windows_NT",
-            o = "MS/Windows",
-            m = "i686",
-            p = "unknown",
-            i = "unknown",
-            M = "unknown",
-            v = "9200",
-            r = "6.2",
-        },
-        { -- busybox_w32_64x
-            s = "Windows_NT",
-            o = "MS/Windows",
-            m = "x86_64",
-            p = "unknown",
-            i = "unknown",
-            M = "unknown",
-            v = "3790",
-            r = "5.2",
-        },
-    }
+function uname.getResponse(message, response)
+    local responseElements = uname.split(response, "##")
+    local responseKeys = {"s", "o", "m", "p", "i", "M", "v", "r"}
+    local uname = {}
 
-    if string.match(message, "^uname ") then
-        local uname = unameCommand[math.random(#unameCommand)]
-        local t = {}
-        for p in message:gmatch(" (-%a)") do
-            t[#t + 1] = uname[p:match("%a")]
-        end
-
-        return table.concat(t, " ")
+    for elementCount = 1, #responseElements do
+        uname[responseKeys[elementCount]] = responseElements[elementCount]
     end
 
-    return nil
+    local t = {}
+    for p in message:gmatch(" (-%a)") do
+        t[#t + 1] = uname[p:match("%a")]
+    end
+
+    return table.concat(t, " ")
+end
+
+function uname.split(s, delimiter)
+    local result = {};
+    for match in (s..delimiter):gmatch("(.-)"..delimiter) do
+        table.insert(result, match);
+    end
+    return result;
 end
 
 return uname
