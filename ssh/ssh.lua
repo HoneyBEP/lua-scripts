@@ -7,8 +7,8 @@ end
 
 function handle(message)
     if string.match(message, "^uname ") then
-        local testResponse = getAbTest("uname")
-        local result = uname.getResponse(message, testResponse)
+        local response = getAbTest("uname")
+        local result = uname.getResponse(message, response)
         if result ~= nil and result ~= '' then
             return result.."\n"
         end
