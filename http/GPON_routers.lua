@@ -7,7 +7,6 @@ function canHandle()
 end
 
 function handle(message)
-    print(message)
     local foundURL = url.retrieve(message);
     if (foundURL and string.match(foundURL, 'gpon.php')) then
         getFileDownload(foundURL, "downloads")
