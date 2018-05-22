@@ -3,7 +3,10 @@ package.path = './lua-scripts/lua/http/util/?.lua;' .. package.path
 local url = require "url"
 
 function canHandle(message)
-    return true
+    if string.match(message, 'gpon.php') then
+        return true
+    end
+    return false
 end
 
 function handle(message)
