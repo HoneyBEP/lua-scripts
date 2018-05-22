@@ -1,7 +1,7 @@
-package.path = './lua-scripts/lua/ssh/util/?.lua;' .. package.path
+package.path = './lua-scripts/lua/ssh-simulator/util/?.lua;' .. package.path
 local uname = require "uname"
 
-function canHandle()
+function canHandle(message)
     return true
 end
 
@@ -24,7 +24,7 @@ function handle(message)
     end
 
     if message == "l" or message == "ls" then
-        return "password.txt\n"
+        return "password.txt password2.txt\n"
     end
 
     if message == "cat password.txt" then
