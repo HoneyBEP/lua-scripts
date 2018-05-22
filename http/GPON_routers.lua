@@ -2,7 +2,7 @@
 package.path = './lua-scripts/lua/http/util/?.lua;' .. package.path
 local url = require "url"
 
-function canHandle()
+function canHandle(message)
     return true
 end
 
