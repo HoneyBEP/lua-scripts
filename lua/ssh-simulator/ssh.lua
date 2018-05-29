@@ -1,4 +1,4 @@
-package.path = './lua-scripts/lua/ssh-simulator/util/?.lua;' .. package.path
+package.path = './scripts/lua/ssh-simulator/util/?.lua;' .. package.path
 local uname = require "uname"
 
 function canHandle(message)
