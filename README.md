@@ -1,2 +1,2 @@
-# lua-scripts
-Lua Scripts for Honeytrap
+# Scripts
+Scripts for Honeytrap
