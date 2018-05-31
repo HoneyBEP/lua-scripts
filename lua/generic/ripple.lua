@@ -1,12 +1,4 @@
---
--- Created by IntelliJ IDEA.
--- User: thomasoomens
--- Date: 22/05/2018
--- Time: 11:26
--- To change this template use File | Settings | File Templates.
---
-package.path = './lua-scripts/lua/generic/util/?.lua;' .. package.path
-local json = require "json"
+local json = require "generic/util/json"
 
 
 local function read_file(path)
@@ -16,8 +8,6 @@ local function read_file(path)
     file:close()
     return content
 end
-
-local methodResponses = json.parse(read_file("./lua-scripts/lua/generic/data/ripple.json"));
 
 function canHandle(request)
     doLog("info", "request received")
@@ -58,6 +48,7 @@ function setContains(set, key)
 end
 
 function getMethod(method, data)
+    local methodResponses = json.parse(read_file(getFolder() .. "/generic/data/ripple.json"));
     if (setContains(methodResponses, method)) then
         local result = json.stringify(methodResponses[method])
         for key, value in pairs(data) do

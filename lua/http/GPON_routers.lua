@@ -1,6 +1,5 @@
 -- lua script for GPON exploit
-package.path = './scripts/lua/http/util/?.lua;' .. package.path
-local url = require "url"
+local url = require "http/util/url"
 
 function canHandle(message)
     if string.match(message, 'gpon.php') then
