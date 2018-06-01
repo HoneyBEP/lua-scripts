@@ -13,16 +13,7 @@ function handle(message)
         end
     end
 
-
-    if message == "uname -n -s -r -v" then
-        return "Linux Node-01 4.4.0-116-generic #140-Ubuntu SMP "..timestamp():gsub("^%l", string.upper).."\n"
-    end
-
-    if message == "uname -r" then
-        return "4.4.0-116-generic\n"
-    end
-
-    if message == "l" or message == "ls" then
+   if message == "l" or message == "ls" then
         return "password.txt password2.txt\n"
     end
 
@@ -45,7 +36,8 @@ function handle(message)
     -- handle:close()
 
     if (result == nil or result == '') then
-        return "         / \\\n        / _ \\\n       | / \\ |\n       ||   || _______\n       ||   || |\\     \\\n       ||   || ||\\     \\\n       ||   || || \\    |\n       ||   || ||  \\__/\n       ||   || ||   ||\n        \\\\_/ \\_/ \\_//\n       /   _     _   \\\n      /               \\\n      |    O     O    |\n      |   \\  ___  /   |\n     /     \\ \\_/ /     \\\n    /  -----  |  --\\    \\\n    |     \\__/|\\__/ \\   | I'm sorry, this command could not be found\n    \\       |_|_|       /\n     \\_____       _____/\n           \\     /\n           |     |        Signed; The Excuse Bunny\n"
+        match = string.match(message, "%w+")
+        return match .. ": command not found\n"
     end
 
     return result
