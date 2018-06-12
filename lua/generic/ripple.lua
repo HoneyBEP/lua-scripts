@@ -31,11 +31,11 @@ function handle(payload)
     if (setContains(body, "method")) then
         local response = getMethod(body.method, body.params[1])
         if (not response) then
-            restWrite("200", [[{"error": "Unknown method"}]])
+            restWrite("200", [[{"error": "Unknown method"}]], [[{}]])
         end
         restWrite("200", json.stringify(response), headers)
     else
-        restWrite("200", [[{"error": "Invalid call"}]])
+        restWrite("200", [[{"error": "Invalid call"}]], [[{}]])
     end
 
 
